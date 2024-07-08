@@ -1,5 +1,5 @@
 const express = require('express');
-const cors = require('cors');
+//const cors = require('cors');
 const expressLayouts = require('express-ejs-layouts');
 const session = require('express-session');
 const bodyParser = require('body-parser');
@@ -11,7 +11,7 @@ class app {
     }
 
     plugins() {
-        this.app.use(cors());
+        //this.app.use(cors());
         this.app.use(express.static('public'));
         this.app.use(bodyParser.urlencoded({ extended: false }))
         this.app.use(bodyParser.json())
