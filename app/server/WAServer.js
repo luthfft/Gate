@@ -68,7 +68,18 @@ class WAServer{
                 session : session
             })
         });
-        
+        whatsapp.onMessageReceived(async(msg)=>{
+            if (msg.key.fromMe || msg.key.remoteJid.includes("status")) return;
+            if(msg.message?.extendedTextMessage?.text == 'ping'){
+                await whatsapp.sendTextMessage({
+                    sessionId: msg.sessionId,
+                    to: msg.key.remoteJid,
+                    text: "Hai, Ini percobaan",
+                    answering: msg,
+                    isGroup : whatsapp.isGroup(msg.key.remoteJid)
+                });
+            }
+        })
         whatsapp.onMessageReceived(async (msg) => {
             try {
                 if(fs.existsSync("storage/json/settings.json")){
